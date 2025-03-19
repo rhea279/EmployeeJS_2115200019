@@ -59,3 +59,28 @@ console.log(
     " | Total Hrs: " + totalEmpHrs +
     " | Emp Wage: " + empWage
 );
+
+// UC 6 - Store Daily Wage in an Array
+function calcDailyWage(empHrs) {
+    return empHrs * WAGE_PER_HOUR;
+}
+
+totalEmpHrs = 0;
+totalWorkingDays = 0;
+let empDailyWageArr = []; // Array to store daily wages
+
+while (totalEmpHrs <= MAX_HRS_IN_MONTH && totalWorkingDays < NUM_OF_WORKING_DAYS) {
+    totalWorkingDays++;
+    let empCheck = Math.floor(Math.random() * 10) % 3;
+    let empHrs = getWorkingHours(empCheck);
+    totalEmpHrs += empHrs;
+    
+    let dailyWage = calcDailyWage(empHrs);
+    empDailyWageArr.push(dailyWage); // Store each day's wage
+}
+
+empWage = calcDailyWage(totalEmpHrs);
+console.log("UC6 - Total Days: " + totalWorkingDays + 
+            " Total Hrs: " + totalEmpHrs + 
+            " Emp Wage: " + empWage);
+console.log("Daily Wages: " + empDailyWageArr);
