@@ -27,3 +27,33 @@ let empCheckWork = Math.floor(Math.random() * 10) % 3;
 let empHrs = getWorkingHours(empCheckWork);
 let empWage = empHrs * WAGE_PER_HOUR;
 console.log("Emp Wage: " + empWage);
+// UC 4 - Calculate Employee Wages for a Month
+empHrs = 0; 
+for (let day = 0; day < NUM_OF_WORKING_DAYS; day++) {
+    let empCheck = Math.floor(Math.random() * 10) % 3;
+    empHrs += getWorkingHours(empCheck);
+}
+
+empWage = empHrs * WAGE_PER_HOUR;
+console.log("Total Hrs: " + empHrs + " Emp Wage: " + empWage);
+// UC 5 - Calculate Wages till Max Hours (160) or Max Days (20) is Reached
+const MAX_HRS_IN_MONTH = 160; // Fixed condition to 160 hours
+
+let totalEmpHrs = 0;
+let totalWorkingDays = 0;
+
+while (totalEmpHrs < MAX_HRS_IN_MONTH && totalWorkingDays < NUM_OF_WORKING_DAYS) {
+    totalWorkingDays++;
+    let empCheck = Math.floor(Math.random() * 10) % 3;
+    totalEmpHrs += getWorkingHours(empCheck);
+}
+
+// Calculate final wage
+empWage = totalEmpHrs * WAGE_PER_HOUR;
+
+// Display final output
+console.log(
+    "UC5 - Total Days: " + totalWorkingDays +
+    " | Total Hrs: " + totalEmpHrs +
+    " | Emp Wage: " + empWage
+);
