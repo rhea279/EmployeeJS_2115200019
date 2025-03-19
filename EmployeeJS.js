@@ -161,12 +161,16 @@ class EmployeePayrollData {
     // Properties
     id;
     salary;
+    gender;
+    startDate;
 
     // Constructor
-    constructor(id, name, salary) {
-        this.id = id;
-        this.name = name;
-        this.salary = salary;
+     constructor(...params) {
+        this.id = params[0];
+        this.name = params[1];
+        this.salary = params[2];
+        this.gender = params[3];
+        this.startDate = params[4];
     }
 
     // Getter and Setter for name
@@ -175,7 +179,11 @@ class EmployeePayrollData {
 
     // Method to return string representation of the object
     toString() {
-        return `id=${this.id}, name='${this.name}', salary=${this.salary}`;
+        const options = { year: 'numeric', month: 'long', day: 'numeric' };
+        const empDate = this.startDate === undefined ? "undefined" :
+            this.startDate.toLocaleDateString("en-US", options);
+        return `id=${this.id}, name='${this.name}', salary=${this.salary}, ` +
+               `gender=${this.gender}, startDate=${empDate}`;
     }
 }
 
@@ -186,3 +194,8 @@ console.log(employeePayrollData.toString());
 // Updating the name property using setter
 employeePayrollData.name = "John";
 console.log(employeePayrollData.toString());
+
+
+// Creating another instance with gender and startDate
+let newEmployeePayrollData = new EmployeePayrollData(1, "Terrisa", 30000, "F", new Date());
+console.log(newEmployeePayrollData.toString());
